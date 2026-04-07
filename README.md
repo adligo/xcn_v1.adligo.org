@@ -23,13 +23,13 @@ The XCN super-structure MUST be comprised of a header-section and then a body-se
 
 ## The Grammar-Structure
 
-Similar to JSON, XCN grammar is a sequence of tokens.  XCN tokens are separated into simple and classified token segments. However, unlike JSON, the tokens are segments of characters separated by whitespace.  In addition, token segments MAY consist of multiple characters.  Finally, some tokens are classified under the following base classification [XCNObjects](#xcn-object), [XCNLineSegments](#xcn-line-segment), [XCNTrees](#xcn-tree), and [XCNTables](#xcn-table) as follows;
+Similar to JSON, XCN grammar is a sequence of tokens.  XCN tokens are separated into simple and classified token segments. However, unlike JSON, the tokens are segments of characters separated by whitespace.  In addition, token segments MAY consist of multiple characters.  Finally, some tokens are classified under the following base classification [XCNObjects](#xcn-objects), [XCNLineSegments](#xcn-line-segments), [XCNTrees](#xcn-trees), and [XCNTables](#xcn-tables) as follows;
 
 ### XCN Package Names
 
 XCN package names are generally derived from the reverse order of a DNS domain name.  However, non-DNS domain names are also allowed and placed under the <b><i>not_dns</i></b> name space.  The concept of packages is derived from UML.
 
-### XCN Class Name
+### XCN Class Names
 
 XCN class names are based on UML and Java's class system.  Because of this, they MAY be fully qualified or relative.  However, this class system is abstracted away from UML and Java so that all languages MAY use it. See the subsequent sections for details.
 
@@ -39,7 +39,7 @@ Fully qualified XCN class names must include their respective package names.
 
 ##### Relative XCN Class Name
 
-##### XCN Object
+##### XCN Objects
 
 XCN Objects MUST NOT contain any data other than an OPTIONAL XCN Class Name.  XCN Objects MUST contain whitespace after the start-object less than '<' character, or the subsequent XCL class name.
 
@@ -56,7 +56,7 @@ Examples;
 <not_dns.xcn.Object >
 ```
 
-##### XCN Line Segment
+##### XCN Line Segments
 
 XCN Line Segments MAY contain simple fields.  XCN Line Segments MUST NOT contain complex fields (i.e. Trees or Tables).  Conceptually, XCN Line Segments extend XCN Objects.
 
@@ -73,7 +73,7 @@ Examples;
 <not_dns.xcn.LineSegment >
 ```
 
-##### XCN Tree
+##### XCN Trees
 
 XCN Trees MAY contain simple fields and complex fields (i.e. other XCN Trees and Tables).   Conceptually, XCN Trees extend XCN Objects.
 
@@ -90,7 +90,7 @@ Examples;
 <not_dns.xcn.Tree bar=<not_dns.xcn.Tree car="foo">>
 ```
 
-##### XCN Table
+##### XCN Tables
 
 XCN Tables MUST NOT contain simple fields or complex fields (i.e. other XCN Trees and Tables).   Conceptually, XCN Trees extend XCN Objects.  The XCN Table start tag MUST be immediately followed by a UNIX Line Feed.  XCN Tables MUST start with a table-header row which MUST consist of either fieldLables or strings.
 
@@ -101,7 +101,7 @@ Example;
 abc col2   "Col 3" treeRef
 t   "me"   123     1
 f   "you"  345.3   2
-f   "them" 99.0    3
+f   "them"  99.0   3
 >
 ```
 
