@@ -48,11 +48,13 @@ Fully qualified XCN class name: <b><i>not_dns.xcn.Object</i></b>
 Examples;
 
 ```
-# Without the Object class name
+// Without the Object class name
 < >
-# With the Object relative class name
+
+// With the Object relative class name
 <Object >
-# With the Object fully qualified class name
+
+// With the Object fully qualified class name
 <not_dns.xcn.Object >
 ```
 
@@ -65,11 +67,13 @@ Fully qualified XCN class name: <b><i>not_dns.xcn.LineSegment</i></b>
 Examples;
 
 ```
-# Without the LineSegments class name
+// Without the LineSegments class name
 < foo="bar">
-# With the LineSegment relative class name
+
+// With the LineSegment relative class name
 <LineSegment bar=123>
-# With the Object fully qualified class name
+
+// With the Object fully qualified class name
 <not_dns.xcn.LineSegment >
 ```
 
@@ -82,17 +86,28 @@ Fully qualified XCN class name: <b><i>not_dns.xcn.Tree</i></b>
 Examples;
 
 ```
-# Without the Tree class names
+// Without the Tree class names
 < foo=< car="bar">>
-# With the Tree relative class names
+
+// With the Tree relative class names
 <Tree bar=<Tree car="foo">>
-# With the Tree fully qualified class names
+
+// With the Tree fully qualified class names
 <not_dns.xcn.Tree bar=<not_dns.xcn.Tree car="foo">>
+
+// Tree with internal table
+< foo=
+<Table rows=2 >
+<Columns mo car >
+<Row "feb" 3 >
+<Row "mar" 36 >
+>
+
 ```
 
 ##### XCN Tables
 
-XCN Tables MUST NOT contain simple fields or complex fields (i.e. other XCN Trees and Tables).   Conceptually, XCN Trees extend XCN Objects.  The XCN Table start tag MUST be immediately followed by a UNIX Line Feed, then a XCN Columns tag and finally zero or more Row tags.  XCN Columns MUST consist of either fieldLables or strings.
+XCN Tables MUST NOT contain simple fields or complex fields (i.e. other XCN Trees and Tables).   Conceptually, XCN Trees extend XCN Objects.  The XCN Table start tag MUST be immediately followed by a UNIX Line Feed, then a XCN Columns tag and finally zero or more Row tags.  XCN Columns MUST consist of either fieldLables or strings.  The Table, Columns and Row tags all extend from [XCN Line Segments](#xcn-line-segments).
 
 Example;
 
