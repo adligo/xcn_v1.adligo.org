@@ -98,11 +98,16 @@ Arrays are extensions of [Complex Objects](#xcn-complex-objects) which contain a
 Primitive Arrays are a restriction of Arrays which MUST ONLY contain [Primitive Objects](#xcn-primitive-objects) or other Primitive Arrays.
 
 ```
-// Example Primitive Array
-(Array t 123 "abc" a/)
+// Example Primitive Array with the optional Array class name
+(Array[ t 123 "abc" a]/)
+
+// Example Primitive Array with-out the optional Array class name
+([ t 123 "abc" a]/)
 
 // Example Primitive Array of Primitive Arrays
-(Array (Array t 123 /) (Array "def" b/)/)
+(Array[ ([Array t 123 ]/) (Array[ "def" b]/)]/)
+
+
 ```
 
 ##### Complex Arrays
