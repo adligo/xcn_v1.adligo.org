@@ -9,6 +9,8 @@ XCN is a binary exchange notation system that relies heavily on [UTF-8](#utf-8-r
 - arbitrary data encodings (aka. embedded JSON, XML, HTML, Google ProtocolBuffers, etc)
 - a fix to JSON's number serialization issues
 
+Finally, XCN also attempts to improve upon [Parquet](#parquet) and other [columnar data storage techniques](#row-vs-column-formats) through data segment/row scanning optimizations. 
+
 # Introduction
 
 In order to keep the mixing pot of features straight in XCN in as simple a manner as possible, there are two major structures involved. First, the super-structure which was originally envisioned by EJCN consists of a recursive header, body format.  The super-structure is context-sensitive. The super-structure is recursive because the body may contain one or more super-structures.  When one or more super structures exist inside of a super-structure body, this is known as a super-structure-sequence.  Second the XCN grammar-structure is used.  The XTN grammar structure is context-free.
@@ -38,6 +40,8 @@ XCN class names are based on UML and Java's class system.  Because of this, they
 Fully qualified XCN class names must include their respective package names.
 
 ##### Relative XCN Class Name
+
+### XCN Objects
 
 ### XCN Primitive Objects
 
@@ -373,6 +377,10 @@ Morgan, S. "Modern Western Numeral System." In *Text Encoded Base 64 Numbers (Te
 ##### Neo4j
 
 Neo4j. (n.d.). *neo4j/neo4j: Graphs for Everyone* [Source code]. GitHub. Retrieved April 22, 2026, from https://github.com/neo4j/neo4j
+
+##### Parquet
+
+Apache Software Foundation. "Apache Parquet." Accessed April 22, 2026. https://parquet.apache.org/.
 
 ##### Positional Number Systems Wikipedia
 

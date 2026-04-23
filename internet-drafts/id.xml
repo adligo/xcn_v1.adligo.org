@@ -402,6 +402,16 @@
         <seriesInfo name="GitHub Repository" value=""/>
       </reference>
 
+      <reference anchor="parquet" target="https://parquet.apache.org/">
+        <front>
+          <title>Apache Parquet</title>
+          <author>
+            <organization>Apache Software Foundation</organization>
+          </author>
+          <date year="2026"/>
+        </front>
+      </reference>
+
       <reference anchor="positional-number-systems-wikipedia" target="https://en.wikipedia.org/wiki/Numeral_system#Positional_systems_in_detail">
         <front>
           <title>Numeral system: Positional systems in detail</title>
