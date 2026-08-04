@@ -13,17 +13,15 @@ Finally, XCN also attempts to improve upon [Parquet](#parquet) and other [column
 
 # Introduction
 
-In order to keep the mixing pot of features straight in XCN in as simple a manner as possible, there are two major structures involved. First, the super-structure which was originally envisioned by EJCN consists of a recursive header, body format.  The super-structure is context-sensitive. The super-structure is recursive because the body may contain one or more super-structures.  When one or more super structures exist inside of a super-structure body, this is known as a super-structure-sequence.  Second the XCN grammar-structure is used.  The XCN grammar structure is [context-free](#context-free-grammers).
+In order to keep the mixing pot of features straight in XCN in as simple a manner as possible, there are three major structures involved, the SuperStructure, the ByteSegmentationStructure and the GrammarStructure. First, the super-structure which was originally envisioned by EJCN consists of a recursive header, body format.  The super-structure is context-sensitive. The super-structure is recursive because the body may contain one or more super-structures.  When one or more super structures exist inside of a super-structure body, this is known as a super-structure-sequence.  Second the XCN grammar-structure is used.  The XCN grammar structure is [context-free](#context-free-grammers).
 
-## The Super-Structure
+## The XCN Super Structure Summary
 
-The XCN super-structure MUST be comprised of a header-section and then a body-section.  XCN's super-structure body-sections MAY include anything from pure binary to HTML.  However, XCN super-structure header-section MUST use XCN's grammar structure.  In addition, the header-section MUST be comprised of XCNLineSegments, comments, or both.
+The XCN super-structure MUST be comprised of a header-section and then a body-section.  XCN's super-structure body-sections MAY include anything from pure binary to HTML.  However, XCN super-structure header-section MUST use XCN's grammar structure.  In addition, the header-section MUST be comprised of XCN Header Lines which are an extension of [XCN Line Segments](#xcn-line-segments), comments, or both.
 
-### XCN Header Section Details
+Details about the Super-Structure elements are covered in [the Super-Structure Details section](#xcn-super-structure-details).  [Super-Structure Details](#xcn-super-structure-details) are covered after [the XCN Grammar Structure](#xcn-grammar-structure) because the XCN Header Lines depend on [the XCN Grammar Structure](#xcn-grammar-structure).
 
-
-
-## The Grammar-Structure
+## XCN Grammar Structure
 
 Similar to JSON, XCN grammar is a sequence of tokens.  XCN tokens are separated into simple and classified token segments. However, unlike JSON, the tokens are segments of characters separated by whitespace.  In addition, token segments MAY consist of multiple characters.  Finally, some tokens are classified under the following base classification [XCNObjects](#xcn-objects), [XCNLineSegments](#xcn-line-segments), [XCNTrees](#xcn-trees), and [XCNTables](#xcn-tables) as follows;
 
@@ -198,6 +196,14 @@ Example;
 11(/Table)
 ```
 
+# XCN Super Structure Details
+
+
+
+# XCN Header Line Segments
+
+XCN Header Line Segements 
+
 # File Scan Optimizations
 
 XCN data segments MAY be prefixed by one or more numbers separated by commas.  These numbers MUST be comprised of [Ten10B Integers](#ten10b) or [Ten64 Integers](#ten64).  Note that [Ten64 Integers](#ten64) are the most optimal, while [Ten10B Integers](#ten10b) split the difference between optimality and human readability.  The first number in the OPTIONAL sequence of numbers identifies the number of bytes in the data segment.  In table-style data structures, this identifies the number of bytes the row.
@@ -221,7 +227,11 @@ TODO asymptotic analysis of writing and reading data
 
 ...
 
-When using XCN, we are targeting O(log log n) seek time for optimized table formats, we believe this will be slightly better than the very rough guess of O(log n) seek time found in Column Storage Formats [Row vs Column Formats](#row-vs-column-formats).
+When using XCN, we are targeting O(log n) seek time for optimized table formats, we believe this will be slightly better than the very rough guess of O(n) seek time found in [Column Storage Formats](#row-vs-column-formats).
+
+Note that approaching O(log n) seek time will require [Ten64](#ten64) integer optimizations.  This is also dependent on the number of bytes per line.
+
+For example; If you have 64-128 bytes per line and 4 [Ten64](#ten64) bytes before the left parentheses.  Two bytes 
 
 Also note this is somewhat similar to the [Neo4j](#neo4j) binary storage format, due to its use of line feeds indicating end of row data.
 
@@ -242,6 +252,18 @@ I often used the following prompt;
 ```
 Find or create Academic/Footnote Markdown Chicago style and RFC XML style citations to
 ```
+
+# Change Log
+
+##### 2026-08-04
+
+Per a discussion about this work, moving it from a two tier structure to a three tier structure sometime today (or ASAP)
+
+SuperStructure, and the GrammarStructure
+vs 
+SuperStructure, the ByteSegmentationStructure and the GrammarStructure
+
+This will decouple the ByteSegmentationStructure from the GrammarStructure so that the prefix that indicates the number of bytes in a GrammarStructure section will be counted separately from the GrammarStructure itself.  This will simplify writing of XCN documents long term, because once you count the bytes you can just write out how many bytes there were instead of doing a silly dance to include the number of Ten64 characters in the byte count itself.  
 
 # Citations
 
